@@ -98,35 +98,35 @@ const store = {
   addPost: function () {
     const newPost: PostType = {
       id: v1(),
-      message: this.state.profilePage.newPostText.trim(),
+      message: store.state.profilePage.newPostText.trim(),
       likesCount: 0
     }
     if (newPost.message !== '') {
-      this.state.profilePage.posts.push(newPost)
-      this.state.profilePage.newPostText = ''
+      store.state.profilePage.posts.push(newPost)
+      store.state.profilePage.newPostText = ''
       rerenderEntireTree();
     }
   },
   
   updateNewPostText: function (newText: string) {
-    this.state.profilePage.newPostText = newText;
+    store.state.profilePage.newPostText = newText;
     rerenderEntireTree();
   },
   
   sendMessage: function() {
     const newMessage: MessageType = {
       id: v1(),
-      message: this.state.dialogsPage.newMessageText.trim(),
+      message: store.state.dialogsPage.newMessageText.trim(),
     }
     if (newMessage.message !== '') {
-      this.state.dialogsPage.messages.push(newMessage)
-      this.state.dialogsPage.newMessageText = ''
+      store.state.dialogsPage.messages.push(newMessage)
+      store.state.dialogsPage.newMessageText = ''
       rerenderEntireTree();
     }
   },
   
   updateNewMessageText: function (newText: string) {
-    this.state.dialogsPage.newMessageText = newText;
+    store.state.dialogsPage.newMessageText = newText;
     rerenderEntireTree();
   },
   
