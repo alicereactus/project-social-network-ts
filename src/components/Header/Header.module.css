@@ -1,0 +1,17 @@
+.header {
+    display: flex;
+    grid-area: h;
+    background-color: #1a191f;
+    border: 2px solid black;
+    border-bottom-style: none;
+    font-family: 'Courier';
+    color: white;
+    font-size: 40px;
+    font-style: italic;
+  }
+
+  .header img{
+    width: 45px;
+    height: 45px;
+    margin: 7px;
+  }

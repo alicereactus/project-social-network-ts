@@ -1,0 +1,36 @@
+.nav {
+    grid-area: n;
+    background-color: #1a191f;
+    border: 2px solid black;
+    border-right-style: none;
+  }
+
+  .item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    height: 52px;
+    border: 2px solid black;
+    border-left-style: none;
+    border-right-style: none;
+    border-top-style: none;
+  }
+
+  .item a {
+    color: grey;
+    text-decoration: none;
+    font-family: 'Courier';
+    font-size: 25px;
+  }
+
+  .item a:hover {
+    color: white;
+  }
+
+  .item a.activeLink {
+    color: white;
+    text-decoration: none;
+    font-family: 'Courier';
+    font-size: 25px;
+  }
