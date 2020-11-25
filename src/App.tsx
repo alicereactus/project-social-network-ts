@@ -15,7 +15,9 @@ type PropsType = {
   store: StorePropsType
 }
 
-const App = (props: PropsType) => {
+const App: React.FC<PropsType> = (props) => {
+
+  const state = props.store.getState()
 
   return (
     <div className='app-wrapper'>
@@ -24,14 +26,12 @@ const App = (props: PropsType) => {
       <div className='app-wrapper-content'>
         <Route path='/paviedamliennia'
           render={() => <Dialogs
-            dialogsPage={props.store.state.dialogsPage}
-            sendMessage={props.store.sendMessage}
-            updateNewMessageText={props.store.updateNewMessageText} />} />
+            dialogsPage={state.dialogsPage}
+            dispatch={props.store.dispatch.bind(props.store)} />} />
         <Route path='/prafajl'
           render={() => <Profile
-            profilePage={props.store.state.profilePage}
-            addPost={props.store.addPost}
-            updateNewPostText={props.store.updateNewPostText} />} />
+            profilePage={state.profilePage}
+            dispatch={props.store.dispatch.bind(props.store)} />} />
         <Route path='/naviny'
           render={() => <News />} />
         <Route path='/muzyka'
@@ -40,7 +40,7 @@ const App = (props: PropsType) => {
           render={() => <Settings />} />
         <Route path='/siabry'
           render={() => <Friends
-            friendsPage={props.store.state.friendsPage} />} />
+            friendsPage={state.friendsPage} />} />
       </div>
     </div>
   );

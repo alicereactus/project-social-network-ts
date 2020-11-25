@@ -1,9 +1,24 @@
-.item {
-    color: greenyellow
+.postItemWrapper {
+  display: flex;
+  width: 580px;
+  border: 2px solid black;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: rgb(48, 47, 58);
 }
 
-.item img {
-  width: 50px;
-  height: 50px;
-  border-radius: 30px 
+.postItemWrapper img {
+  width: 65px;
+  height: 60px;
+  border-radius: 50px;
+  border: 2px solid white;
+}
+
+.postItem{
+  margin: 0px 5px 5px 15px;
+  width: 490px;
+  color: gold;
+  font-size: 18px;
+  font-family: 'Courier';
+  word-wrap: break-word;
 }

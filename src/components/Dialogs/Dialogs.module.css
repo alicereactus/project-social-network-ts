@@ -49,36 +49,39 @@
 
 .messages {
     grid-area: b;
-    height: 75vh;
+    height: 74vh;
     border: 2px solid black;
     border-right-style: none;
     border-left-style: none;
     border-top-style: none;
+    overflow: auto;
 }
 
-.message {
-    margin: 15px;
-    width: 200px;
+.myMessage {
+    margin: 15px 15px 15px 25px;
+    width: 170px;
     background-color: rgb(48, 47, 58);
     border: 2px solid white;
-    border-radius: 15px;
+    border-top-right-radius: 15px;
     padding: 8px;
     color: gold;
     font-size: 18px;
     font-family: 'Courier';
+    word-wrap: break-word;
 }
 
-.myMessage{
+.message{
     position: relative;
-    right: -195px;
-    margin: 15px;
-    width: 200px;
+    margin-left: 20px;
+    right: -210px;
+    width: 170px;
     border: 2px solid white;
-    border-radius: 15px;
+    border-top-left-radius: 15px;
     padding: 8px;
     color: white;
     font-size: 18px;
     font-family: 'Courier';
+    word-wrap: break-word;
 }
 
 .sendMessage {

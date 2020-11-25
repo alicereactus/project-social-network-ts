@@ -1,7 +1,56 @@
-.postsBlock {
-    padding: 10px;
+.postsWrapper{
+    padding: 10px 50px 10px 50px;
+
+    border: 2px solid black;
+    border-bottom-style: none;
+    border-left-style: none;
+    border-right-style: none;
+}
+
+.postsTitle{
+    color: white;
+    font-size: 25px;
+    font-weight: 700;
+    font-family: 'Courier';
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.addPost{
+    margin-top: 20px;
+}
+
+.addPost textarea{
+    width: 580px;
+    height: 42px;
+    padding: 8px;
+    border: 2px solid white;
+    border-radius: 15px;
+    background-color: #282c34;
+    outline: none;
+    color: white;
+    font-size: 18px;
+    font-family: 'Courier';
+    word-wrap: break-word;
+}
+
+.addPostBtn{
+    position: relative;
+    right: -500px;
+    margin: 10px 0 0 0;
+}
+
+.addPostBtn button{
+    border-radius: 15px;
+    background-color: white;
+    color: #282c34;
+    font-size: 18px;
+    font-family: 'Courier';
+    outline: none;
+    text-align: center;
 }
 
 .posts {
-    margin-top: 10px;
+    margin-top: 15px;
+    overflow: hidden;
 }

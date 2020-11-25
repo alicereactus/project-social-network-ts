@@ -1,15 +1,18 @@
 import React from 'react';
-import {PostType} from '../../../../redux/state';
+import { PostType } from '../../../../redux/state';
 import s from './Post.module.css';
 
 const Post = (props: PostType) => {
   return (
-    <div className={s.item}>
-      <img src='https://www.vokrug.tv/pic/product/6/f/e/2/6fe2523ab4de68e3981b29c9f9f00f17.jpeg' />
-      {props.message}
-      <div>
-        <span>like</span> {props.likesCount}
+    <div className={s.postItemWrapper}>
+      <img src='https://upload.wikimedia.org/wikipedia/ru/thumb/7/77/Richard_Madden_as_Robb_Stark.jpg/274px-Richard_Madden_as_Robb_Stark.jpg' />
+      <div className={s.postItem}>
+        {props.message}
       </div>
+      {/* <div>
+        <span> like </span> 
+        <span>{props.likesCount}</span>
+      </div> */}
     </div>
   )
 }

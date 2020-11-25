@@ -1,3 +1,45 @@
-.descriptionBlock {
-    padding: 10px;
+.profileInfoWrapper {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+}
+
+.profileInfoWrapper img{
+    width: 200px;
+    height: 250px;
+    border: 2px solid white;
+}
+
+.profileInfoDescription{
+    margin-top: 0;
+    margin-left: 20px;
+    color: white;
+    font-family: 'Courier';
+}
+
+.profileInfoName{
+    font-size: 25px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.profileInfoLocation{
+    font-size: 17px;
+    color: rgb(177, 168, 190);
+}
+
+.profileInfoStatus{
+    margin-top: 10px;
+    font-size: 17px;
+    color: white;
+}
+
+.titleAboutMe{
+    margin-top: 20px;
+    margin-bottom: 5px;
+    color: white;
+    font-size: 25px;
+    font-weight: 700;
+    font-family: 'Courier';
+    text-transform: uppercase;
 }

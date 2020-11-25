@@ -4,7 +4,7 @@ import s from './../Dialogs.module.css';
 
 const Message = (props: MessageType) => {
   return (
-    <div className={(props.message === 'Usio vydatna) Jak ty?') ? s.myMessage : s.message}>{props.message}</div>
+    <div className={(props.message === 'Usio vydatna) Jak ty?') ? s.message : s.myMessage}>{props.message}</div>
   )
 }
 
