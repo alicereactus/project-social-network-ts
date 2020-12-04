@@ -1,44 +1,48 @@
 import React, { ChangeEvent } from 'react';
-import { DialogsPagePropsType, ActionsType, SendMessageActionCreator, UpdateMessageActionCreator } from '../../redux/state'
+import { DialogsPagePropsType } from '../../redux/dialogs-reducer'
+
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import s from './Dialogs.module.css';
+
+import styles from './Dialogs.module.css';
 
 type DialogsPropsType = {
   dialogsPage: DialogsPagePropsType
-  dispatch: (action: ActionsType) => void
+  sendMessage: () => void
+  updateMessage: (text: string) => void 
 }
 
 const Dialogs = (props: DialogsPropsType) => {
 
-  const dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem id={d.id} name={d.name} avatar={d.avatar} />)
+  debugger
+  const dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem key={d.id} id={d.id} name={d.name} avatar={d.avatar} />)
 
-  const messagesElements = props.dialogsPage.messages.map(m => <Message id={m.id} message={m.message} />)
+  const messagesElements = props.dialogsPage.messages.map(m => <Message key={m.id} id={m.id} message={m.message} time={m.time} />)
 
   // const newSendMessageElement = React.createRef<HTMLTextAreaElement>();
 
   const sendMessage = () => {
-    props.dispatch(SendMessageActionCreator())
+    props.sendMessage()
   }
 
   const onMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const text = e.currentTarget.value
-    props.dispatch(UpdateMessageActionCreator(text))
+    props.updateMessage(text)
   }
 
   return (
-    <div className={s.dialogsWrapper}>
-      <div className={s.dialogsItems}>
+    <div className={styles.dialogsWrapper}>
+      <div className={styles.dialogsItems}>
         {dialogsElements}
       </div>
-      <div className={s.messages}>
+      <div className={styles.messages}>
         {messagesElements}
       </div>
-      <div className={s.sendMessage}>
-        <div className={s.sendMessageText}>
+      <div className={styles.sendMessage}>
+        <div className={styles.sendMessageText}>
           <textarea wrap='hard' onChange={onMessageChange} value={props.dialogsPage.newMessageText} />
         </div>
-        <div className={s.sendMessageBtn}>
+        <div className={styles.sendMessageBtn}>
           <button onClick={sendMessage}>Adpravić</button>
         </div>
       </div>

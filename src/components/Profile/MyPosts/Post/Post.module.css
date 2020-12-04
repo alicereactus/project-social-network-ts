@@ -1,5 +1,6 @@
 .postItemWrapper {
   display: flex;
+  position: relative;
   width: 580px;
   border: 2px solid black;
   padding: 10px;
@@ -17,8 +18,38 @@
 .postItem{
   margin: 0px 5px 5px 15px;
   width: 490px;
-  color: gold;
+  color: white;
   font-size: 18px;
   font-family: 'Courier';
   word-wrap: break-word;
+}
+
+.postLikeTimeWrapper{
+  margin-left: 10px;
+  margin-top: 10px
+}
+
+.postTime{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color:  #e0b4ca;
+  font-size: 15px;
+}
+
+.postLike{
+  position: absolute;
+  bottom: 10px;
+  right: 80px;
+  color:  gold;
+  font-size: 15px;
+}
+
+.heartStroke {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  fill: red;
 }

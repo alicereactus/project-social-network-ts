@@ -1,46 +1,59 @@
 import React, {ChangeEvent} from 'react';
-import { PostType, ActionsType, AddPostActionCreator, UpdatePostActionCreator } from '../../../redux/state';
+
+import { likeAC, PostType } from '../../../redux/profile-reducer';
+
 import Post from './Post/Post';
-import s from './MyPosts.module.css';
+
+import styles from './MyPosts.module.css';
 
 type MyPostsPropsType = {
   posts: Array<PostType>
   newPostText: string
-  dispatch: (action: ActionsType) => void
+  addPost: () => void
+  updateNewPostText: (text: string) => void
+  like: (postID: string) => void
+  unlike: (postID: string) => void
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
 
-  const postsElements = props.posts.map(p => <Post id={p.id} message={p.message} likesCount={p.likesCount} />).reverse()
+  const postsElements = props.posts.map(p => <Post 
+    key={p.id} 
+    id={p.id} 
+    message={p.message} 
+    time={p.time} 
+    liked={p.liked} 
+    likesCount={p.likesCount}
+    like={props.like}
+    unlike={props.unlike} />).reverse()
 
   // const newPostElement = React.createRef<HTMLTextAreaElement>();
-
-  const addPost = () => {
-      props.dispatch(AddPostActionCreator())
+  const onAddPost = () => {
+    props.addPost()
   }
 
   const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
       const text = e.currentTarget.value
-      props.dispatch(UpdatePostActionCreator(text))
+      props.updateNewPostText(text)
   }
 
   return (
-    <div className={s.postsWrapper}>
+    <div className={styles.postsWrapper}>
 
-      <div className={s.postsTitle}>
+      <div className={styles.postsTitle}>
         Maje pasty
         </div>
 
-      <div className={s.addPost}>
+      <div className={styles.addPost}>
         <div>
           <textarea wrap='hard' onChange={onPostChange} value={props.newPostText} />
         </div>
-        <div className={s.addPostBtn}>
-          <button onClick={addPost}>Add post</button>
+        <div className={styles.addPostBtn}>
+          <button onClick={onAddPost}>Dadać post</button>
         </div>
       </div>
 
-      <div className={s.posts}>
+      <div className={styles.posts}>
         {postsElements}
       </div>
     </div>
