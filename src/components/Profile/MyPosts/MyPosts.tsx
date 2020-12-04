@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from 'react';
 
-import { likeAC, PostType } from '../../../redux/profile-reducer';
+import { PostType } from '../../../redux/profile-reducer';
 
 import Post from './Post/Post';
 

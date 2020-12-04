@@ -1,5 +1,4 @@
 import React from 'react';
-import { PostType } from '../../../../redux/profile-reducer';
 import styles from './Post.module.css';
 
 type PostPropsType = {
@@ -26,10 +25,10 @@ const Post = (props: PostPropsType) => {
             {
               props.liked
                 ? <button onClick={() => { props.unlike(props.id) }}>
-                 <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/A_perfect_SVG_heart.svg/342px-A_perfect_SVG_heart.svg.png' style={{ width: '10px', height: '10px' }}/>
+                 <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/A_perfect_SVG_heart.svg/342px-A_perfect_SVG_heart.svg.png' alt='like' style={{ width: '10px', height: '10px' }}/>
                 </button>
                 : <button onClick={() => props.like(props.id)}>
-                  <img src='https://www.clipartmax.com/png/middle/32-325427_heart-icon-svg-heart-png-transparent-background.png' style={{ width: '10px', height: '10px' }} />
+                  <img src='https://www.clipartmax.com/png/middle/32-325427_heart-icon-svg-heart-png-transparent-background.png' alt='like' style={{ width: '10px', height: '10px' }} />
                 </button>
             }
             <span>{props.likesCount}</span>
