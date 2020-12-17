@@ -1,27 +1,37 @@
 import React from 'react';
 
 import styles from './Friend.module.css';
+import userPhoto from '../../../assets/images/user-icon.png'
 
-type FriendPropsType = {
-  id: string
-  followed: boolean
+export type FriendPropsType = {
+  // id: string
+  // followed: boolean
+  // name: string
+  // location: string
+  // status: string
+  // avatar: string
   name: string
-  location: string
-  status: string
-  avatar: string
-  follow: (friendID: string) => void
-  unfollow: (friendID: string) => void
+  id: number
+  uniqueUrlName: string | null
+  photos: {
+    small: string | null
+    large: string | null
+  }
+  status: string | null
+  followed: boolean
+  follow: (friendID: number) => void
+  unfollow: (friendID: number) => void
 }
 
 const Friend = (props: FriendPropsType) => {
 
   return (
     <div className={styles.friendItem}>
-      <img src={props.avatar} alt='friend' />
+      <img src={props.photos.small !== null ? props.photos.small : userPhoto} alt='friend' />
       <div className={styles.friendItemProfileInfo}>
         <div className={styles.friendItemName}>{props.name}</div>
-        <div className={styles.friendItemLocation}>{props.location}</div>
-        <div className={styles.friendItemStatus}>{props.status}</div>
+        <div className={styles.friendItemLocation}>{'props.location'}</div>
+        <div className={styles.friendItemStatus}>{'props.status'}</div>
       </div>
       <div className={styles.followBtn}>
         {

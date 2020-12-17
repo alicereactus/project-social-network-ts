@@ -26,7 +26,7 @@
 
 .postLikeTimeWrapper{
   margin-left: 10px;
-  margin-top: 10px
+  margin-top: 15px
 }
 
 .postTime{
@@ -43,13 +43,4 @@
   right: 80px;
   color:  gold;
   font-size: 15px;
-}
-
-.heartStroke {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  fill: red;
 }

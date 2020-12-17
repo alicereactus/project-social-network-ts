@@ -1,12 +1,15 @@
 import { ActionsType } from "./redux-store"
 
 export type FriendType = {
-  id: string
-  followed: boolean
   name: string
-  location: string
-  status: string
-  avatar: string
+  id: number
+  uniqueUrlName: string | null
+  photos: {
+    small: string | null
+    large: string | null
+  }
+  status: string | null
+  followed: boolean
 }
 
 export type FriendsPagePropsType = {
@@ -15,12 +18,12 @@ export type FriendsPagePropsType = {
 
 export type FollowActionType = {
   type: 'FOLLOW'
-  friendID: string
+  friendID: number
 }
 
 export type UnfollowActionType = {
   type: 'UNFOLLOW'
-  friendID: string
+  friendID: number
 }
 
 export type SetActionType = {
@@ -66,14 +69,14 @@ export const friendsReducer = (state: FriendsPagePropsType = initialState, actio
   }
 }
 
-export const followAC = (friendID: string): FollowActionType => {
+export const followAC = (friendID: number): FollowActionType => {
   return {
     type: FOLLOW,
     friendID: friendID
   }
 }
 
-export const unfollowAC = (friendID: string): UnfollowActionType => {
+export const unfollowAC = (friendID: number): UnfollowActionType => {
   return {
     type: UNFOLLOW,
     friendID: friendID

@@ -41,8 +41,7 @@
 }
 
 .followBtn{
-    position: fixed;
-    right: 530px;
+    margin-right: 20px;
     margin-top: 50px;
 }
 

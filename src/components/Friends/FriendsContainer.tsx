@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { followAC, FriendType, setFriendsAC, unfollowAC } from '../../redux/friends-reducer';
 import { AppStateType, ActionsType } from '../../redux/redux-store';
 
-import Friends from './Friends';
+import Friends from './FriendsClass';
 
 let mapStateToProps = (state: AppStateType) => {
   return {
@@ -13,10 +13,10 @@ let mapStateToProps = (state: AppStateType) => {
 
 let mapDispatchToProps = (dispatch: (action: ActionsType) => void) => {
   return {
-    follow: (friendID: string) => {
+    follow: (friendID: number) => {
       dispatch(followAC(friendID))
     },
-    unfollow: (friendID: string) => {
+    unfollow: (friendID: number) => {
       dispatch(unfollowAC(friendID))
     },
     setFriends: (friends: Array<FriendType>) => {
