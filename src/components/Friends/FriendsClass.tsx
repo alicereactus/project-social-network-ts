@@ -21,7 +21,7 @@ class Friends extends React.Component<FriendsPropsType> {
     return (
       <div>
         {
-          this.props.friends.map(p => <div className={styles.friendItem}>
+          this.props.friends.map(p => <div key={p.id} className={styles.friendItem}>
             <img src={p.photos.small !== null ? p.photos.small : userPhoto} alt='friend' />
             <div className={styles.friendItemProfileInfo}>
               <div className={styles.friendItemName}>{p.name}</div>
