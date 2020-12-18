@@ -11,7 +11,12 @@ class Friends extends React.Component<FriendsPropsType> {
 
   componentDidMount() {
     axios
-    .get('https://social-network.samuraijs.com/api/1.0/users')
+    .get('https://social-network.samuraijs.com/api/1.0/users', {
+      withCredentials: true,
+      headers: {
+        'api-key': '9aa516cb-8f4b-45f8-be8d-59445844c51c'
+      }
+    })
     .then(response => {
       this.props.setFriends(response.data.items)
     })
