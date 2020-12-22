@@ -17,6 +17,7 @@ export type FriendsPagePropsType = {
   pageSize: number
   totalFriendsCount: number
   currentPage: number
+  isFetching: boolean
 }
 
 export type FollowActionType = {
@@ -44,17 +45,24 @@ export type SetTotalFriendsActionType = {
   totalFriendsCount: number
 }
 
+export type ToggleIsFetchingActionType = {
+  type: 'TOGGLE-IS-FETCHING'
+  isFetching: boolean
+}
+
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_FRIENDS = 'SET-FRIENDS'
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
 const SET_TOTAL_FRIENDS_COUNT = 'SET-TOTAL-FRIENDS-COUNT'
+const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
 
 let initialState = {
   friends: [],
   pageSize: 5,
   totalFriendsCount: 0,
-  currentPage: 1
+  currentPage: 1,
+  isFetching: true
 }
 
 export const friendsReducer = (state: FriendsPagePropsType = initialState, action: ActionsType): FriendsPagePropsType => {
@@ -87,6 +95,9 @@ export const friendsReducer = (state: FriendsPagePropsType = initialState, actio
     }
     case SET_TOTAL_FRIENDS_COUNT: {
       return { ...state, totalFriendsCount: action.totalFriendsCount }
+    }
+    case TOGGLE_IS_FETCHING: {
+      return { ...state, isFetching: action.isFetching }
     }
     default:
       return state
@@ -125,6 +136,13 @@ export const setTotalFriendsCountAC = (totalFriendsCount: number): SetTotalFrien
   return {
     type: SET_TOTAL_FRIENDS_COUNT,
     totalFriendsCount
+  }
+}
+
+export const toggleIsFetchingAC = (isFetching: boolean): ToggleIsFetchingActionType => {
+  return {
+    type: TOGGLE_IS_FETCHING,
+    isFetching
   }
 }
 

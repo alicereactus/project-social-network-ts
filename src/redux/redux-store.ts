@@ -1,7 +1,7 @@
 import { combineReducers, createStore } from "redux";
 import profileReducer, { AddPostActionType, LikePostActionType, UnlikePostActionType, UpdatePostActionType } from './profile-reducer'
 import dialogsReducer, { SendMessageActionType, UpdateMessageActionType } from './dialogs-reducer'
-import friendsReducer, { FollowActionType, SetFriendsActionType, SetCurrentPageActionType, UnfollowActionType, SetTotalFriendsActionType } from './friends-reducer'
+import friendsReducer, { FollowActionType, SetFriendsActionType, SetCurrentPageActionType, UnfollowActionType, SetTotalFriendsActionType, ToggleIsFetchingActionType } from './friends-reducer'
 
 type ReducersType = typeof reducers
 
@@ -27,6 +27,7 @@ AddPostActionType
 | SetTotalFriendsActionType 
 | LikePostActionType 
 | UnlikePostActionType
+| ToggleIsFetchingActionType
 
 
 export default store

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { FriendType } from '../../redux/friends-reducer';
-import Pagination from './Pagination';
+import Pagination from '../Common/Pagination/Pagination';
 
 import userPhoto from '../../assets/images/user-icon.png'
 import styles from './Friend/Friend.module.css';
