@@ -14,6 +14,9 @@ export type FriendType = {
 
 export type FriendsPagePropsType = {
   friends: Array<FriendType>
+  pageSize: number
+  totalFriendsCount: number
+  currentPage: number
 }
 
 export type FollowActionType = {
@@ -26,17 +29,32 @@ export type UnfollowActionType = {
   friendID: number
 }
 
-export type SetActionType = {
+export type SetFriendsActionType = {
   type: 'SET-FRIENDS'
   friends: Array<FriendType>
+}
+
+export type SetCurrentPageActionType = {
+  type: 'SET-CURRENT-PAGE'
+  currentPage: number
+}
+
+export type SetTotalFriendsActionType = {
+  type: 'SET-TOTAL-FRIENDS-COUNT'
+  totalFriendsCount: number
 }
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_FRIENDS = 'SET-FRIENDS'
+const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
+const SET_TOTAL_FRIENDS_COUNT = 'SET-TOTAL-FRIENDS-COUNT'
 
 let initialState = {
-  friends: []
+  friends: [],
+  pageSize: 5,
+  totalFriendsCount: 0,
+  currentPage: 1
 }
 
 export const friendsReducer = (state: FriendsPagePropsType = initialState, action: ActionsType): FriendsPagePropsType => {
@@ -62,7 +80,13 @@ export const friendsReducer = (state: FriendsPagePropsType = initialState, actio
       })
     }
     case SET_FRIENDS: {
-      return { ...state, friends: [...state.friends, ...action.friends] }
+      return { ...state, friends: action.friends }
+    }
+    case SET_CURRENT_PAGE: {
+      return { ...state, currentPage: action.currentPage }
+    }
+    case SET_TOTAL_FRIENDS_COUNT: {
+      return { ...state, totalFriendsCount: action.totalFriendsCount }
     }
     default:
       return state
@@ -72,21 +96,35 @@ export const friendsReducer = (state: FriendsPagePropsType = initialState, actio
 export const followAC = (friendID: number): FollowActionType => {
   return {
     type: FOLLOW,
-    friendID: friendID
+    friendID
   }
 }
 
 export const unfollowAC = (friendID: number): UnfollowActionType => {
   return {
     type: UNFOLLOW,
-    friendID: friendID
+    friendID
   }
 }
 
-export const setFriendsAC = (friends: Array<FriendType>): SetActionType => {
+export const setFriendsAC = (friends: Array<FriendType>): SetFriendsActionType => {
   return {
     type: SET_FRIENDS,
-    friends: friends
+    friends
+  }
+}
+
+export const setCurrentPageAC = (currentPage: number): SetCurrentPageActionType => {
+  return {
+    type: SET_CURRENT_PAGE,
+    currentPage
+  }
+}
+
+export const setTotalFriendsCountAC = (totalFriendsCount: number): SetTotalFriendsActionType => {
+  return {
+    type: SET_TOTAL_FRIENDS_COUNT,
+    totalFriendsCount
   }
 }
 

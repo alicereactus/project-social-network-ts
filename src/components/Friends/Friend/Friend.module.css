@@ -56,3 +56,12 @@
     outline: none;
     text-align: center;
 }
+
+.page{
+    color: white;
+}
+
+.selectedPage{
+    color: rgb(102, 255, 0);
+    font-weight: bold;
+}

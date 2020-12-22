@@ -8,9 +8,14 @@ import Friend from './Friend/Friend';
 
 export type FriendsPropsType = {
   friends: Array<FriendType>
+  pageSize: number
+  totalFriendsCount: number
+  currentPage: number
   follow: (friendID: number) => void
   unfollow: (friendID: number) => void
   setFriends: (friends: Array<FriendType>) => void
+  setCurrentPage: (currentPage: number) => void
+  setTotalFriendsCount: (totalFriendsCount: number) => void
 }
 
 const Friends = (props: FriendsPropsType) => {
@@ -23,7 +28,7 @@ const Friends = (props: FriendsPropsType) => {
           props.setFriends(response.data.items)
         })
     }
-}
+  }
 
   // [
   //   { id: v1(), followed: false, name: 'Hanna', location: 'Minsk, Belarus', status: 'Каб любіць Беларусь нашу мілую маму...', avatar: 'https://i.pinimg.com/originals/a4/04/71/a40471885a948612dcf92936141d98da.jpg' },
