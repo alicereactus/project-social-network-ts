@@ -104,42 +104,42 @@ export const friendsReducer = (state: FriendsPagePropsType = initialState, actio
   }
 }
 
-export const followAC = (friendID: number): FollowActionType => {
+export const follow = (friendID: number): FollowActionType => {
   return {
     type: FOLLOW,
     friendID
   }
 }
 
-export const unfollowAC = (friendID: number): UnfollowActionType => {
+export const unfollow = (friendID: number): UnfollowActionType => {
   return {
     type: UNFOLLOW,
     friendID
   }
 }
 
-export const setFriendsAC = (friends: Array<FriendType>): SetFriendsActionType => {
+export const setFriends = (friends: Array<FriendType>): SetFriendsActionType => {
   return {
     type: SET_FRIENDS,
     friends
   }
 }
 
-export const setCurrentPageAC = (currentPage: number): SetCurrentPageActionType => {
+export const setCurrentPage = (currentPage: number): SetCurrentPageActionType => {
   return {
     type: SET_CURRENT_PAGE,
     currentPage
   }
 }
 
-export const setTotalFriendsCountAC = (totalFriendsCount: number): SetTotalFriendsActionType => {
+export const setTotalFriendsCount = (totalFriendsCount: number): SetTotalFriendsActionType => {
   return {
     type: SET_TOTAL_FRIENDS_COUNT,
     totalFriendsCount
   }
 }
 
-export const toggleIsFetchingAC = (isFetching: boolean): ToggleIsFetchingActionType => {
+export const toggleIsFetching = (isFetching: boolean): ToggleIsFetchingActionType => {
   return {
     type: TOGGLE_IS_FETCHING,
     isFetching
