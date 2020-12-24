@@ -1,6 +1,6 @@
 import { ActionsType } from "./redux-store"
 
-export type FriendType = {
+export type UserType = {
   name: string
   id: number
   uniqueUrlName: string | null
@@ -12,27 +12,27 @@ export type FriendType = {
   followed: boolean
 }
 
-export type FriendsPagePropsType = {
-  friends: Array<FriendType>
+export type UsersPagePropsType = {
+  users: Array<UserType>
   pageSize: number
-  totalFriendsCount: number
+  totalUsersCount: number
   currentPage: number
   isFetching: boolean
 }
 
 export type FollowActionType = {
   type: 'FOLLOW'
-  friendID: number
+  userID: number
 }
 
 export type UnfollowActionType = {
   type: 'UNFOLLOW'
-  friendID: number
+  userID: number
 }
 
-export type SetFriendsActionType = {
-  type: 'SET-FRIENDS'
-  friends: Array<FriendType>
+export type SetUsersActionType = {
+  type: 'SET-USERS'
+  users: Array<UserType>
 }
 
 export type SetCurrentPageActionType = {
@@ -40,9 +40,9 @@ export type SetCurrentPageActionType = {
   currentPage: number
 }
 
-export type SetTotalFriendsActionType = {
-  type: 'SET-TOTAL-FRIENDS-COUNT'
-  totalFriendsCount: number
+export type SetTotalUsersActionType = {
+  type: 'SET-TOTAL-USERS-COUNT'
+  totalUsersCount: number
 }
 
 export type ToggleIsFetchingActionType = {
@@ -52,49 +52,49 @@ export type ToggleIsFetchingActionType = {
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
-const SET_FRIENDS = 'SET-FRIENDS'
+const SET_USERS = 'SET-USERS'
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
-const SET_TOTAL_FRIENDS_COUNT = 'SET-TOTAL-FRIENDS-COUNT'
+const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT'
 const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
 
 let initialState = {
-  friends: [],
+  users: [],
   pageSize: 5,
-  totalFriendsCount: 0,
+  totalUsersCount: 0,
   currentPage: 1,
-  isFetching: true
+  isFetching: false
 }
 
-export const friendsReducer = (state: FriendsPagePropsType = initialState, action: ActionsType): FriendsPagePropsType => {
+export const usersReducer = (state: UsersPagePropsType = initialState, action: ActionsType): UsersPagePropsType => {
   switch (action.type) {
     case FOLLOW:
       return {
         ...state,
-        friends: state.friends.map(f => {
-          if (f.id === action.friendID) {
-            return { ...f, followed: true }
+        users: state.users.map(u => {
+          if (u.id === action.userID) {
+            return { ...u, followed: true }
           }
-          return f
+          return u
         })
       }
     case UNFOLLOW: 
     return {
       ...state,
-      friends: state.friends.map(f => {
-        if (f.id === action.friendID) {
+      users: state.users.map(f => {
+        if (f.id === action.userID) {
           return { ...f, followed: false }
         }
         return f
       })
     }
-    case SET_FRIENDS: {
-      return { ...state, friends: action.friends }
+    case SET_USERS: {
+      return { ...state, users: action.users }
     }
     case SET_CURRENT_PAGE: {
       return { ...state, currentPage: action.currentPage }
     }
-    case SET_TOTAL_FRIENDS_COUNT: {
-      return { ...state, totalFriendsCount: action.totalFriendsCount }
+    case SET_TOTAL_USERS_COUNT: {
+      return { ...state, totalUsersCount: action.totalUsersCount }
     }
     case TOGGLE_IS_FETCHING: {
       return { ...state, isFetching: action.isFetching }
@@ -104,24 +104,24 @@ export const friendsReducer = (state: FriendsPagePropsType = initialState, actio
   }
 }
 
-export const follow = (friendID: number): FollowActionType => {
+export const follow = (userID: number): FollowActionType => {
   return {
     type: FOLLOW,
-    friendID
+    userID
   }
 }
 
-export const unfollow = (friendID: number): UnfollowActionType => {
+export const unfollow = (userID: number): UnfollowActionType => {
   return {
     type: UNFOLLOW,
-    friendID
+    userID
   }
 }
 
-export const setFriends = (friends: Array<FriendType>): SetFriendsActionType => {
+export const setUsers = (users: Array<UserType>): SetUsersActionType => {
   return {
-    type: SET_FRIENDS,
-    friends
+    type: SET_USERS,
+    users
   }
 }
 
@@ -132,10 +132,10 @@ export const setCurrentPage = (currentPage: number): SetCurrentPageActionType =>
   }
 }
 
-export const setTotalFriendsCount = (totalFriendsCount: number): SetTotalFriendsActionType => {
+export const setTotalUsersCount = (totalUsersCount: number): SetTotalUsersActionType => {
   return {
-    type: SET_TOTAL_FRIENDS_COUNT,
-    totalFriendsCount
+    type: SET_TOTAL_USERS_COUNT,
+    totalUsersCount
   }
 }
 
@@ -146,4 +146,4 @@ export const toggleIsFetching = (isFetching: boolean): ToggleIsFetchingActionTyp
   }
 }
 
-export default friendsReducer
+export default usersReducer

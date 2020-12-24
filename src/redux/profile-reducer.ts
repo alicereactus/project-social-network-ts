@@ -9,16 +9,41 @@ export type PostType = {
   likesCount: number
 }
 
-export type ProfilePropsType = {
-  avatar: string,
-  name: string,
-  location: string,
-  status: string,
-  about: string
+export type ContactType = {
+  facebook: string
+  website: string
+  vk: string
+  instagram: string
+  youtube: string
+  github: string
+  mainLink: string
 }
 
+export type PhotoType = {
+  small: string
+  large: string
+}
+
+export type ProfileType = {
+  aboutMe: string
+  contacts: ContactType
+  lookingForAJob: boolean
+  lookingForAJobDescription: string
+  fullName: string
+  userId: number
+  photos: PhotoType
+}
+
+// export type ProfileType = {
+//   avatar: string,
+//   name: string,
+//   location: string,
+//   status: string,
+//   about: string
+// }
+
 export type ProfilePagePropsType = {
-  profile: ProfilePropsType
+  profile: ProfileType | null
   newPostText: string
   posts: Array<PostType>
 }
@@ -42,19 +67,26 @@ export type UnlikePostActionType = {
   postID: string
 }
 
+export type SetUserProfileActionType = {
+  type: 'SET-USER-PROFILE'
+  profile: ProfileType
+}
+
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const LIKE = 'LIKE-POST'
 const UNLIKE = 'UNLIKE-POST'
+const SET_USER_PROFILE = 'SET-USER-PROFILE'
 
 export let initialState = {
-  profile: {
-    avatar: 'https://upload.wikimedia.org/wikipedia/ru/thumb/7/77/Richard_Madden_as_Robb_Stark.jpg/274px-Richard_Madden_as_Robb_Stark.jpg',
-    name: 'Robiert Stark',
-    location: 'Minsk, Belarus',
-    status: 'Staradaŭniaj Litoŭskaj Pahoni nia raźbić, nie spynić, nia strymać',
-    about: 'Kachaju svaju krainu'
-  },
+  profile: null,
+  // {
+  //   avatar: 'https://upload.wikimedia.org/wikipedia/ru/thumb/7/77/Richard_Madden_as_Robb_Stark.jpg/274px-Richard_Madden_as_Robb_Stark.jpg',
+  //   name: 'Robiert Stark',
+  //   location: 'Minsk, Belarus',
+  //   status: 'Staradaŭniaj Litoŭskaj Pahoni nia raźbić, nie spynić, nia strymać',
+  //   about: 'Kachaju svaju krainu'
+  // }
   newPostText: '',
   posts: [
     { id: v1(), message: 'Siabry, planuju sustreču z vami. Napišycie mnie)', time: '22:00', liked: true, likesCount: 12 },
@@ -101,6 +133,11 @@ const profileReducer = (state: ProfilePagePropsType = initialState, action: Acti
         return p
       })
     }
+    case SET_USER_PROFILE: 
+    return {
+      ...state,
+      profile: action.profile
+    }
     default:
       return state
   }
@@ -130,6 +167,13 @@ export const unlikeAC = (postID: string): UnlikePostActionType => {
   return {
     type: UNLIKE,
     postID: postID
+  }
+}
+
+export const setUserProfile = (profile: ProfileType): SetUserProfileActionType => {
+  return {
+    type: SET_USER_PROFILE,
+    profile
   }
 }
 

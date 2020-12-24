@@ -1,7 +1,8 @@
 import { combineReducers, createStore } from "redux";
-import profileReducer, { AddPostActionType, LikePostActionType, UnlikePostActionType, UpdatePostActionType } from './profile-reducer'
+
+import profileReducer, { AddPostActionType, LikePostActionType, SetUserProfileActionType, UnlikePostActionType, UpdatePostActionType } from './profile-reducer'
 import dialogsReducer, { SendMessageActionType, UpdateMessageActionType } from './dialogs-reducer'
-import friendsReducer, { FollowActionType, SetFriendsActionType, SetCurrentPageActionType, UnfollowActionType, SetTotalFriendsActionType, ToggleIsFetchingActionType } from './friends-reducer'
+import  usersReducer, { FollowActionType, SetUsersActionType, SetCurrentPageActionType, UnfollowActionType, SetTotalUsersActionType, ToggleIsFetchingActionType, } from './users-reducer'
 
 type ReducersType = typeof reducers
 
@@ -10,7 +11,7 @@ export type AppStateType = ReturnType<ReducersType>
 let reducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
-    friendsPage: friendsReducer
+    usersPage: usersReducer
 })
 
 let store  = createStore(reducers)
@@ -20,14 +21,17 @@ AddPostActionType
 | UpdatePostActionType
 | SendMessageActionType 
 | UpdateMessageActionType
-| FollowActionType
-| UnfollowActionType
-| SetFriendsActionType
-| SetCurrentPageActionType
-| SetTotalFriendsActionType 
 | LikePostActionType 
 | UnlikePostActionType
+| SetUserProfileActionType
+| FollowActionType
+| UnfollowActionType
+| SetUsersActionType
+| SetCurrentPageActionType
+| SetTotalUsersActionType 
 | ToggleIsFetchingActionType
 
+// @ts-ignore
+window.store = store
 
 export default store

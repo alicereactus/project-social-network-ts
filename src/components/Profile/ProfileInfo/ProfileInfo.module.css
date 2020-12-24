@@ -21,11 +21,13 @@
     font-size: 25px;
     font-weight: 700;
     text-transform: uppercase;
+    text-align: center;
+    color: rgb(142, 159, 255);
 }
 
-.profileInfoLocation{
+.profileInfoContacts{
     font-size: 17px;
-    color: rgb(177, 168, 190);
+    color: white
 }
 
 .profileInfoStatus{
@@ -34,11 +36,11 @@
     color: white;
 }
 
-.titleAboutMe{
+.title{
     margin-top: 20px;
     margin-bottom: 5px;
-    color: white;
-    font-size: 25px;
+    color: rgb(170, 255, 175);
+    font-size: 20px;
     font-weight: 700;
     font-family: 'Courier';
     text-transform: uppercase;
