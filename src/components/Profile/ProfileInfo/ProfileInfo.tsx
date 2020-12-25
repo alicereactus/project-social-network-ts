@@ -12,7 +12,7 @@ type ProfileInfoPropsType = {
 const ProfileInfo = (props: ProfileInfoPropsType) => {
 
   let contacts: Array<any> = []
-  props.profile && Object.entries(props.profile.contacts).forEach(([key, value]) => contacts.push(<div key={key}>{value !== null ? `${key}: ${value}` : ``}</div>))
+  props.profile && Object.entries(props.profile.contacts).forEach(([key, value]) => contacts.push(<div key={key}>{value !== null && value !== '' ? `${key}: ${value}` : ``}</div>))
 
   if(!props.profile) {
     return <Preloader />
