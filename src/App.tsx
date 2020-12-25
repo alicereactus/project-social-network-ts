@@ -17,11 +17,11 @@ const App: React.FC = () => {
       <Header />
       <Navbar />
       <div className='app-wrapper-content'>
-        <Route path='/prafajl'
+        <Route path='/profile/:userId?'
           render={() => <ProfileContainer />} />
         <Route path='/paviedamliennia'
           render={() => <DialogsContainer />} />
-        <Route path='/siabry'
+        <Route path='/users'
           render={() => <UsersContainer /> } />
         <Route path='/muzyka'
           render={() => <Music />} />

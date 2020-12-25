@@ -17,13 +17,13 @@ import styles from './Navbar.module.css';
 const Navbar = () => {
   return <nav className={styles.nav}>
     <div className={styles.item}>
-      <NavLink to='/prafajl' activeClassName={styles.activeLink}>Prafajl</NavLink>
+      <NavLink to='/profile' activeClassName={styles.activeLink}>Prafajl</NavLink>
     </div>
     <div className={styles.item}>
       <NavLink to='/paviedamliennia' activeClassName={styles.activeLink}>Paviedamliennia</NavLink>
     </div>
     <div className={styles.item}>
-      <NavLink to='/siabry' activeClassName={styles.activeLink}>Siabry</NavLink>
+      <NavLink to='/users' activeClassName={styles.activeLink}>Siabry</NavLink>
     </div>
     <div className={styles.item}>
       <NavLink to='/muzyka' activeClassName={styles.activeLink}>Muzyka</NavLink>

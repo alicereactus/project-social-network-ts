@@ -10,13 +10,13 @@ export type PostType = {
 }
 
 export type ContactType = {
-  facebook: string
-  website: string
-  vk: string
-  instagram: string
-  youtube: string
-  github: string
-  mainLink: string
+  facebook: string | null
+  website: string | null
+  vk: string | null
+  instagram: string | null
+  youtube: string | null
+  github: string | null
+  mainLink: string | null
 }
 
 export type PhotoType = {
@@ -79,14 +79,28 @@ const UNLIKE = 'UNLIKE-POST'
 const SET_USER_PROFILE = 'SET-USER-PROFILE'
 
 export let initialState = {
-  profile: null,
-  // {
-  //   avatar: 'https://upload.wikimedia.org/wikipedia/ru/thumb/7/77/Richard_Madden_as_Robb_Stark.jpg/274px-Richard_Madden_as_Robb_Stark.jpg',
-  //   name: 'Robiert Stark',
-  //   location: 'Minsk, Belarus',
+  profile: {
+    aboutMe: 'Kachaju svaju krainu',
+    contacts: {
+      facebook: null,
+      website: null,
+      vk: 'vk.com/robiert-stark',
+      instagram: 'instagram.com/robiert-stark',
+      youtube: null,
+      github: null,
+      mainLink: null
+    },
+    lookingForAJob: true,
+    lookingForAJobDescription: 'Open to work frontend developer',
+    fullName: 'Robiert Stark',
+    userId: 700000,
+    photos: {
+      small: '',
+      large: 'https://upload.wikimedia.org/wikipedia/ru/thumb/7/77/Richard_Madden_as_Robb_Stark.jpg/274px-Richard_Madden_as_Robb_Stark.jpg'
+    }
+  },
   //   status: 'Staradaŭniaj Litoŭskaj Pahoni nia raźbić, nie spynić, nia strymać',
-  //   about: 'Kachaju svaju krainu'
-  // }
+
   newPostText: '',
   posts: [
     { id: v1(), message: 'Siabry, planuju sustreču z vami. Napišycie mnie)', time: '22:00', liked: true, likesCount: 12 },
@@ -123,21 +137,21 @@ const profileReducer = (state: ProfilePagePropsType = initialState, action: Acti
           return p
         })
       }
-    case UNLIKE: 
-    return {
-      ...state,
-      posts: state.posts.map(p => {
-        if (p.id === action.postID) {
-          return { ...p, liked: false, likesCount: p.likesCount - 1 }
-        }
-        return p
-      })
-    }
-    case SET_USER_PROFILE: 
-    return {
-      ...state,
-      profile: action.profile
-    }
+    case UNLIKE:
+      return {
+        ...state,
+        posts: state.posts.map(p => {
+          if (p.id === action.postID) {
+            return { ...p, liked: false, likesCount: p.likesCount - 1 }
+          }
+          return p
+        })
+      }
+    case SET_USER_PROFILE:
+      return {
+        ...state,
+        profile: action.profile
+      }
     default:
       return state
   }
