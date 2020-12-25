@@ -2,7 +2,7 @@ import { combineReducers, createStore } from "redux";
 
 import profileReducer, { AddPostActionType, LikePostActionType, SetUserProfileActionType, UnlikePostActionType, UpdatePostActionType } from './profile-reducer'
 import dialogsReducer, { SendMessageActionType, UpdateMessageActionType } from './dialogs-reducer'
-import  usersReducer, { FollowActionType, SetUsersActionType, SetCurrentPageActionType, UnfollowActionType, SetTotalUsersActionType, ToggleIsFetchingActionType, } from './users-reducer'
+import  usersReducer, { FollowActionType, SetUsersActionType, SetCurrentPageActionType, UnfollowActionType, SetTotalUsersActionType, ToggleIsFetchingActionType, ToggleIsFollowingProgressActionType, } from './users-reducer'
 import authReducer, { SetUserDataActionType } from "./auth-reducer";
 
 type ReducersType = typeof reducers
@@ -33,6 +33,7 @@ AddPostActionType
 | SetTotalUsersActionType 
 | ToggleIsFetchingActionType
 | SetUserDataActionType
+| ToggleIsFollowingProgressActionType
 
 // @ts-ignore
 window.store = store
