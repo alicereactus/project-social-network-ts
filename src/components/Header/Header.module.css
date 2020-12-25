@@ -1,17 +1,42 @@
 .header {
-    display: flex;
-    grid-area: h;
-    background-color: #1a191f;
-    border: 2px solid black;
-    border-bottom-style: none;
-    font-family: 'Courier';
-    color: white;
-    font-size: 40px;
-    font-style: italic;
-  }
+  grid-area: h;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #1a191f;
+  border: 2px solid black;
+  border-bottom-style: none;
+}
 
-  .header img{
-    width: 45px;
-    height: 45px;
-    margin: 7px;
-  }
+.logo {
+  display: flex;
+  font-family: 'Courier';
+  color: white;
+  font-size: 40px;
+  font-style: italic;
+}
+
+.logo img{
+  width: 45px;
+  height: 45px;
+  margin: 7px;
+}
+
+.loginBlock {
+  margin-right: 10px;
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-style: normal;
+} 
+
+.loginBlock a {
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-style: normal;
+} 
