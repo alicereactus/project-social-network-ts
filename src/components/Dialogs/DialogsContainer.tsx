@@ -8,7 +8,8 @@ import Dialogs from './Dialogs';
 
 let mapStateToProps = (state: AppStateType) => {
   return {
-    dialogsPage: state.dialogsPage
+    dialogsPage: state.dialogsPage,
+    isAuth: state.auth.isAuth
   }
 }
 
