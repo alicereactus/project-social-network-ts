@@ -15,10 +15,21 @@ export const usersAPI = {
       .then(response => {
         return response.data
       })
-  }
-}
-
-export const profileAPI = {
+  },
+  follow(userId: number) {
+    return instance
+      .post(`follow/${userId}`, {})
+      .then(response => {
+        return response.data
+      })
+  },
+  unfollow(userId: number) {
+    return instance
+      .delete(`follow/${userId}`)
+      .then(response => {
+        return response.data
+      })
+  },
   getProfile(userId: number) {
     return instance
       .get(`profile/` + userId)
@@ -36,21 +47,4 @@ export const authAPI = {
         return response.data
       })
   }
-}
-
-export const followUnfollowAPI = {
-  unfollow(id: number) {
-    return instance
-      .delete(`follow/${id}`)
-      .then(response => {
-        return response.data
-      })
-  },
-  follow(id: number) {
-    return instance
-      .post(`follow/${id}`, {})
-      .then(response => {
-        return response.data
-      })
-  },
 }

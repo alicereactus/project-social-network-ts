@@ -6,7 +6,6 @@ import Pagination from '../Common/Pagination/Pagination';
 import userPhoto from '../../assets/images/user-icon.png'
 import styles from './Users.module.css';
 import { NavLink } from 'react-router-dom';
-import { followUnfollowAPI } from '../../api/api';
 
 type UsersPropsType = {
   users: Array<UserType>
@@ -16,7 +15,6 @@ type UsersPropsType = {
   follow: (userID: number) => void
   unfollow: (userID: number) => void
   onPageChanged: (pageNumber: number) => void
-  toggleIsFollowingProgress: (isFetching: boolean, userID: number) => void
 }
 
 const Users = (props: UsersPropsType) => {
@@ -45,25 +43,11 @@ const Users = (props: UsersPropsType) => {
           {
             u.followed
               ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                props.toggleIsFollowingProgress(true, u.id)
-                followUnfollowAPI.unfollow(u.id)
-                  .then(data => {
-                    if (data.resultCode === 0) {
-                      props.unfollow(u.id)
-                    }
-                    props.toggleIsFollowingProgress(false, u.id)
-                  })
+                props.unfollow(u.id)
               }
               } style={{ backgroundColor: 'grey' }}>Unfollow</button>
               : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                props.toggleIsFollowingProgress(true, u.id)
-                followUnfollowAPI.follow(u.id)
-                  .then(data => {
-                    if (data.resultCode === 0) {
-                      props.follow(u.id)
-                    }
-                    props.toggleIsFollowingProgress(false, u.id)
-                  })
+                props.follow(u.id)
               }
               }>Follow</button>
           }

@@ -1,4 +1,5 @@
 import { v1 } from 'uuid'
+import { usersAPI } from '../api/api'
 import { ActionsType } from './redux-store'
 
 export type PostType = {
@@ -188,6 +189,15 @@ export const setUserProfile = (profile: ProfileType): SetUserProfileActionType =
   return {
     type: SET_USER_PROFILE,
     profile
+  }
+}
+
+export const getUserProfileThunkCreator = (userId: number) => {
+  return (dispatch: (action: ActionsType) => void) => {
+    usersAPI.getProfile(userId)
+      .then(data => {
+        dispatch(setUserProfile(data))
+      })
   }
 }
 
