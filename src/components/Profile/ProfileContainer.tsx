@@ -6,7 +6,6 @@ import { AppStateType } from '../../redux/redux-store';
 import { ProfileType, getUserProfileThunkCreator } from '../../redux/profile-reducer'
 
 import Profile from './Profile';
-import { withAuthRedirect } from '../../hoc/WithAuthRedirect';
 import { compose } from 'redux';
 
 type PathParamsType = {
@@ -56,7 +55,7 @@ let mapStateToProps = (state: AppStateType) => {
 // const WithUrlDataContainerComponent = withRouter(AuthRedirectComponent)
 
 export default compose<React.ComponentType>(
-  withAuthRedirect,
+  // withAuthRedirect,
   withRouter,
   connect(mapStateToProps, { getUserProfile: getUserProfileThunkCreator })
 )(ProfileContainer);

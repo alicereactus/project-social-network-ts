@@ -2,10 +2,11 @@ import React from 'react';
 
 import { ProfileType } from '../../../redux/profile-reducer'
 import Preloader from '../../Common/Preloader/Preloader';
+import ProfileStatus from './ProfileStatus'
 
 import styles from './ProfileInfo.module.css';
 
-type ProfileInfoPropsType = {
+export type ProfileInfoPropsType = {
   profile: ProfileType | null
 }
 
@@ -26,10 +27,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
         </div>
         <div className={styles.profileInfoDescription}>
           <div className={styles.profileInfoName}>{props.profile.fullName}</div>
-          <div className={styles.profileInfoStatus}>
-          <div className={styles.title}>Looking for a job status</div>
-            {props.profile.lookingForAJobDescription}
-          </div>
+          <ProfileStatus status={props.profile.lookingForAJobDescription} />
           <div className={styles.title}>Pra mianie</div>
           <div>{props.profile.aboutMe}</div>
           <div className={styles.title}>My contacts</div>
