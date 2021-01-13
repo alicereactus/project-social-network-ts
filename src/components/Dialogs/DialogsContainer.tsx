@@ -4,12 +4,12 @@ import { AppStateType, ActionsType } from '../../redux/redux-store';
 import { SendMessageActionCreator, UpdateMessageActionCreator } from '../../redux/dialogs-reducer'
 
 import Dialogs from './Dialogs';
-// const newSendMessageElement = React.createRef<HTMLTextAreaElement>();
+import { withAuthRedirect } from '../../hoc/WithAuthRedirect';
+
 
 let mapStateToProps = (state: AppStateType) => {
   return {
     dialogsPage: state.dialogsPage,
-    isAuth: state.auth.isAuth
   }
 }
 
@@ -24,6 +24,8 @@ let mapDispatchToProps = (dispatch: (action: ActionsType) => void) => {
   }
 }
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+const AuthRedirectComponent = withAuthRedirect(Dialogs)
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)
 
 export default DialogsContainer

@@ -5,11 +5,9 @@ import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 
 import styles from './Dialogs.module.css';
-import { Redirect } from 'react-router-dom';
 
 type DialogsPropsType = {
   dialogsPage: DialogsPagePropsType
-  isAuth: boolean
   sendMessage: () => void
   updateMessage: (text: string) => void 
 }
@@ -20,8 +18,6 @@ const Dialogs = (props: DialogsPropsType) => {
 
   const messagesElements = props.dialogsPage.messages.map(m => <Message key={m.id} id={m.id} message={m.message} time={m.time} />)
 
-  // const newSendMessageElement = React.createRef<HTMLTextAreaElement>();
-
   const sendMessage = () => {
     props.sendMessage()
   }
@@ -30,8 +26,6 @@ const Dialogs = (props: DialogsPropsType) => {
     const text = e.currentTarget.value
     props.updateMessage(text)
   }
-
-  if(!props.isAuth) return <Redirect to={'/login'} />
 
   return (
     <div className={styles.dialogsWrapper}>
