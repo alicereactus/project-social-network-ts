@@ -2,7 +2,7 @@ import { applyMiddleware, combineReducers, createStore } from "redux";
 import thunkMiddleware from 'redux-thunk'
 
 import profileReducer, {
-    AddPostActionType, LikePostActionType, SetUserProfileActionType,
+    AddPostActionType, LikePostActionType, SetStatusActionType, SetUserProfileActionType,
     UnlikePostActionType, UpdatePostActionType
 } from './profile-reducer'
 import dialogsReducer, { SendMessageActionType, UpdateMessageActionType } from './dialogs-reducer'
@@ -34,6 +34,7 @@ AddPostActionType
 | LikePostActionType 
 | UnlikePostActionType
 | SetUserProfileActionType
+| SetStatusActionType
 | FollowActionType
 | UnfollowActionType
 | SetUsersActionType

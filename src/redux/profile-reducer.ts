@@ -1,5 +1,5 @@
 import { v1 } from 'uuid'
-import { usersAPI } from '../api/api'
+import { profileAPI } from '../api/api'
 import { ActionsType } from './redux-store'
 
 export type PostType = {
@@ -35,16 +35,9 @@ export type ProfileType = {
   photos: PhotoType
 }
 
-// export type ProfileType = {
-//   avatar: string,
-//   name: string,
-//   location: string,
-//   status: string,
-//   about: string
-// }
-
 export type ProfilePagePropsType = {
   profile: ProfileType | null
+  status: string
   newPostText: string
   posts: Array<PostType>
 }
@@ -73,35 +66,41 @@ export type SetUserProfileActionType = {
   profile: ProfileType
 }
 
+export type SetStatusActionType = {
+  type: 'SET-STATUS'
+  status: string
+}
+
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const LIKE = 'LIKE-POST'
 const UNLIKE = 'UNLIKE-POST'
 const SET_USER_PROFILE = 'SET-USER-PROFILE'
+const SET_STATUS = 'SET-STATUS'
 
 export let initialState = {
   profile: {
-    aboutMe: 'Kachaju svaju krainu',
+    aboutMe: '',
     contacts: {
-      facebook: null,
-      website: null,
-      vk: 'vk.com/robiert-stark',
-      instagram: 'instagram.com/robiert-stark',
-      youtube: null,
-      github: null,
-      mainLink: null
+      facebook: '',
+      website: '',
+      vk: '',
+      instagram: '',
+      youtube: '',
+      github: '',
+      mainLink: ''
     },
-    lookingForAJob: true,
-    lookingForAJobDescription: 'Open to work frontend developer',
-    fullName: 'Robiert Stark',
-    userId: 700000,
+    lookingForAJob: false,
+    lookingForAJobDescription: '',
+    fullName: '',
+    userId: NaN,
     photos: {
       small: '',
-      large: 'https://upload.wikimedia.org/wikipedia/ru/thumb/7/77/Richard_Madden_as_Robb_Stark.jpg/274px-Richard_Madden_as_Robb_Stark.jpg'
+      large: ''
     }
   },
-  //   status: 'Staradaŭniaj Litoŭskaj Pahoni nia raźbić, nie spynić, nia strymać',
-
+  status: '',
+  // status: 'Staradaŭniaj Litoŭskaj Pahoni nia raźbić, nie spynić, nia strymać',
   newPostText: '',
   posts: [
     { id: v1(), message: 'Siabry, planuju sustreču z vami. Napišycie mnie)', time: '22:00', liked: true, likesCount: 12 },
@@ -153,6 +152,10 @@ const profileReducer = (state: ProfilePagePropsType = initialState, action: Acti
         ...state,
         profile: action.profile
       }
+    case SET_STATUS:
+      return {
+        ...state, status: action.status
+      }
     default:
       return state
   }
@@ -192,11 +195,38 @@ export const setUserProfile = (profile: ProfileType): SetUserProfileActionType =
   }
 }
 
+export const setStatus = (status: string): SetStatusActionType => {
+  return {
+    type: SET_STATUS,
+    status
+  }
+}
+
 export const getUserProfileThunkCreator = (userId: number) => {
   return (dispatch: (action: ActionsType) => void) => {
-    usersAPI.getProfile(userId)
+    profileAPI.getProfile(userId)
       .then(data => {
         dispatch(setUserProfile(data))
+      })
+  }
+}
+
+export const getStatusThunkCreator = (userId: number) => {
+  return (dispatch: (action: ActionsType) => void) => {
+    profileAPI.getStatus(userId)
+      .then(data => {
+        dispatch(setStatus(data))
+      })
+  }
+}
+
+export const updateStatusThunkCreator = (status: string) => {
+  return (dispatch: (action: ActionsType) => void) => {
+    profileAPI.updateStatus(status)
+      .then(data => {
+        if (data.resultCode === 0) {
+          dispatch(setStatus(status))
+        }
       })
   }
 }

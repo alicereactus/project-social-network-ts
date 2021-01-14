@@ -3,7 +3,7 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { AppStateType } from '../../redux/redux-store';
-import { ProfileType, getUserProfileThunkCreator } from '../../redux/profile-reducer'
+import { ProfileType, getUserProfileThunkCreator, getStatusThunkCreator, updateStatusThunkCreator } from '../../redux/profile-reducer'
 
 import Profile from './Profile';
 import { compose } from 'redux';
@@ -14,10 +14,13 @@ type PathParamsType = {
 
 type MapStateToPropsType = {
   profile: ProfileType | null
+  status: string
 }
 
 type MapDispatchToPropsType = {
   getUserProfile: (userId: number) => void
+  getUserStatus: (userId: number) => void
+  updateUserStatus: (status: string) => void
 }
 
 type OwnPropsType = MapStateToPropsType & MapDispatchToPropsType
@@ -29,16 +32,20 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 
   componentDidMount() {
     let userId = Number(this.props.match.params.userId)
-    if (!userId && this.props.profile) {
-      userId = this.props.profile.userId
+    if (!userId) {
+      userId = 13052
     }
     this.props.getUserProfile(userId)
+    this.props.getUserStatus(userId)
   }
 
   render() {
     return (
       <div>
-        <Profile {...this.props} profile={this.props.profile} />
+        <Profile {...this.props} 
+        profile={this.props.profile} 
+        status={this.props.status}
+        updateUserStatus={this.props.updateUserStatus} />
       </div>
     )
   }
@@ -46,7 +53,8 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 
 let mapStateToProps = (state: AppStateType) => {
   return {
-    profile: state.profilePage.profile
+    profile: state.profilePage.profile,
+    status: state.profilePage.status
   }
 }
 
@@ -57,5 +65,5 @@ let mapStateToProps = (state: AppStateType) => {
 export default compose<React.ComponentType>(
   // withAuthRedirect,
   withRouter,
-  connect(mapStateToProps, { getUserProfile: getUserProfileThunkCreator })
+  connect(mapStateToProps, { getUserProfile: getUserProfileThunkCreator, getUserStatus: getStatusThunkCreator, updateUserStatus: updateStatusThunkCreator })
 )(ProfileContainer);

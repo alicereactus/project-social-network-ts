@@ -8,6 +8,8 @@ import styles from './ProfileInfo.module.css';
 
 export type ProfileInfoPropsType = {
   profile: ProfileType | null
+  status: string
+  updateUserStatus: (status: string) => void
 }
 
 const ProfileInfo = (props: ProfileInfoPropsType) => {
@@ -15,7 +17,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
   let contacts: Array<any> = []
   props.profile && Object.entries(props.profile.contacts).forEach(([key, value]) => contacts.push(<div key={key}>{value !== null && value !== '' ? `${key}: ${value}` : ``}</div>))
 
-  if(!props.profile) {
+  if (!props.profile?.fullName) {
     return <Preloader />
   }
 
@@ -27,7 +29,11 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
         </div>
         <div className={styles.profileInfoDescription}>
           <div className={styles.profileInfoName}>{props.profile.fullName}</div>
-          <ProfileStatus status={props.profile.lookingForAJobDescription} />
+          <ProfileStatus status={props.status}  updateUserStatus={props.updateUserStatus} />
+          <div className={styles.profileInfoJobStatus}>
+            <div className={styles.title}>Looking for a job status</div>
+            <div>{props.profile.lookingForAJobDescription}</div>
+          </div>
           <div className={styles.title}>Pra mianie</div>
           <div>{props.profile.aboutMe}</div>
           <div className={styles.title}>My contacts</div>
