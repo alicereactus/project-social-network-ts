@@ -4,9 +4,9 @@ import { reducer as formReducer } from 'redux-form';
 
 import profileReducer, {
     AddPostActionType, LikePostActionType, SetStatusActionType, SetUserProfileActionType,
-    UnlikePostActionType, UpdatePostActionType
+    UnlikePostActionType
 } from './profile-reducer'
-import dialogsReducer, { SendMessageActionType, UpdateMessageActionType } from './dialogs-reducer'
+import dialogsReducer, { SendMessageActionType } from './dialogs-reducer'
 import usersReducer, {
     FollowActionType, SetUsersActionType, SetCurrentPageActionType,
     UnfollowActionType, SetTotalUsersActionType, ToggleIsFetchingActionType,
@@ -30,9 +30,7 @@ let store  = createStore(reducers, applyMiddleware(thunkMiddleware))
 
 export type ActionsType = 
 AddPostActionType 
-| UpdatePostActionType
 | SendMessageActionType 
-| UpdateMessageActionType
 | LikePostActionType 
 | UnlikePostActionType
 | SetUserProfileActionType

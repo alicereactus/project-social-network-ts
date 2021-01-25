@@ -14,26 +14,19 @@ export type DialogType = {
 }
 
 export type DialogsPagePropsType = {
-  newMessageText: string
   messages: Array<MessageType>
   dialogs: Array<DialogType>
 }
 
 export type SendMessageActionType = {
   type: 'SEND-MESSAGE'
+  newMessageBody: string
 }
 
-export type UpdateMessageActionType = {
-  type: 'UPDATE-NEW-MESSAGE-TEXT'
-  newText: string
-}
 
 const SEND_MESSAGE = 'SEND-MESSAGE'
 
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
-
 let initialState = {
-  newMessageText: '',
   messages: [
     { id: v1(), message: 'Pryvitannie!', time: '22:00' },
     { id: v1(), message: 'Jak tvaje spravy?', time: '10:00' },
@@ -57,32 +50,23 @@ export const dialogsReducer = (state: DialogsPagePropsType = initialState, actio
     case SEND_MESSAGE: {
       const newMessage: MessageType = {
         id: v1(),
-        message: state.newMessageText.trim(),
+        message: action.newMessageBody.trim(),
         time: `${new Date().getHours()}:${(new Date().getMinutes() < 10) ? `0${new Date().getMinutes()}` : new Date().getMinutes()}`
       }
       if (newMessage.message !== '') {
-        copyState = { ...state, messages: [...state.messages, newMessage], newMessageText: '' }
+        copyState = { ...state, messages: [...state.messages, newMessage] }
       }
       return copyState
-    }
-    case UPDATE_NEW_MESSAGE_TEXT: {
-      return { ...state, newMessageText: action.newText }
     }
     default:
       return state
   }
 }
 
-export const SendMessageActionCreator = (): SendMessageActionType => {
+export const SendMessageActionCreator = (newMessageBody: string): SendMessageActionType => {
   return {
-    type: SEND_MESSAGE
-  }
-}
-
-export const UpdateMessageActionCreator = (newText: string): UpdateMessageActionType => {
-  return {
-    type: 'UPDATE-NEW-MESSAGE-TEXT',
-    newText: newText
+    type: SEND_MESSAGE,
+    newMessageBody
   }
 }
 

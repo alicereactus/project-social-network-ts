@@ -38,17 +38,12 @@ export type ProfileType = {
 export type ProfilePagePropsType = {
   profile: ProfileType | null
   status: string
-  newPostText: string
   posts: Array<PostType>
 }
 
 export type AddPostActionType = {
   type: 'ADD-POST'
-}
-
-export type UpdatePostActionType = {
-  type: 'UPDATE-NEW-POST-TEXT'
-  newText: string
+  newPostText: string
 }
 
 export type LikePostActionType = {
@@ -72,7 +67,6 @@ export type SetStatusActionType = {
 }
 
 const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const LIKE = 'LIKE-POST'
 const UNLIKE = 'UNLIKE-POST'
 const SET_USER_PROFILE = 'SET-USER-PROFILE'
@@ -101,7 +95,6 @@ export let initialState = {
   },
   status: '',
   // status: 'Staradaŭniaj Litoŭskaj Pahoni nia raźbić, nie spynić, nia strymać',
-  newPostText: '',
   posts: [
     { id: v1(), message: 'Siabry, planuju sustreču z vami. Napišycie mnie)', time: '22:00', liked: true, likesCount: 12 },
     { id: v1(), message: "Siabry, zaprašaju ŭsich na kancert siaredniaviečnaj muzyki", time: '23:00', liked: false, likesCount: 11 }
@@ -114,18 +107,15 @@ const profileReducer = (state: ProfilePagePropsType = initialState, action: Acti
     case ADD_POST: {
       const newPost: PostType = {
         id: v1(),
-        message: state.newPostText.trim(),
+        message: action.newPostText.trim(),
         time: `${new Date().getHours()}:${(new Date().getMinutes() < 10) ? `0${new Date().getMinutes()}` : new Date().getMinutes()}`,
         liked: false,
         likesCount: 0
       }
       if (newPost.message !== '') {
-        copyState = { ...state, posts: [...state.posts, newPost], newPostText: '' }
+        copyState = { ...state, posts: [...state.posts, newPost] }
       }
       return copyState
-    }
-    case UPDATE_NEW_POST_TEXT: {
-      return { ...state, newPostText: action.newText }
     }
     case LIKE:
       return {
@@ -161,16 +151,10 @@ const profileReducer = (state: ProfilePagePropsType = initialState, action: Acti
   }
 }
 
-export const AddPostActionCreator = (): AddPostActionType => {
+export const AddPostActionCreator = (newPostText: string): AddPostActionType => {
   return {
-    type: ADD_POST
-  }
-}
-
-export const UpdatePostActionCreator = (newText: string): UpdatePostActionType => {
-  return {
-    type: UPDATE_NEW_POST_TEXT,
-    newText: newText
+    type: ADD_POST,
+    newPostText
   }
 }
 
