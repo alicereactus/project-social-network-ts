@@ -28,6 +28,8 @@ let reducers = combineReducers({
 
 let store  = createStore(reducers, applyMiddleware(thunkMiddleware))
 
+
+
 export type ActionsType = 
 AddPostActionType 
 | SendMessageActionType 

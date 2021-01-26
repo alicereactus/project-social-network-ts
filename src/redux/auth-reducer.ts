@@ -1,16 +1,10 @@
+import { FormAction, stopSubmit } from "redux-form"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
 import { authAPI } from "../api/api"
 import { ActionsType, AppStateType } from "./redux-store"
 
-export type UserDataType = {
-  id: number | null
-  login: string | null
-  email: string | null
-  isAuth: boolean
-}
-
 export type AuthPropsType = {
-  id: number | null
+  userId: number | null
   login: string | null
   email: string | null
   isAuth: boolean
@@ -18,7 +12,7 @@ export type AuthPropsType = {
 
 export type SetUserDataActionType = {
   type: 'SET-USER-DATA'
-  payload: UserDataType
+  payload: AuthPropsType
 }
 
 type ThunkType = ThunkAction<void, AppStateType, unknown, ActionsType>
@@ -26,7 +20,7 @@ type ThunkType = ThunkAction<void, AppStateType, unknown, ActionsType>
 const SET_USER_DATA = 'SET-USER-DATA'
 
 let initialState = {
-  id: null,
+  userId: null,
   login: null,
   email: null,
   isAuth: false
@@ -42,10 +36,10 @@ export const authReducer = (state: AuthPropsType = initialState, action: Actions
   }
 }
 
-export const setAuthUserData = (id: number | null, login: string | null, email: string | null, isAuth: boolean): SetUserDataActionType => {
+export const setAuthUserData = (userId: number | null, login: string | null, email: string | null, isAuth: boolean): SetUserDataActionType => {
   return {
     type: SET_USER_DATA,
-    payload: { id, login, email, isAuth}
+    payload: { userId, login, email, isAuth }
   }
 }
 
@@ -62,11 +56,14 @@ export const getAuthUserDataThunkCreator = () => {
 }
 
 export const loginThunkCreator = (email: string, password: string, rememberMe: boolean): ThunkType => {
-  return (dispatch: ThunkDispatch<AppStateType, unknown, ActionsType>) => {
+  return (dispatch: ThunkDispatch<AppStateType, unknown, ActionsType | FormAction>) => {
     authAPI.login(email, password, rememberMe)
       .then(data => {
         if (data.resultCode === 0) {
           dispatch(getAuthUserDataThunkCreator())
+        } else {
+          let message = data.messages.length > 0 ? data.messages[0] : 'Some error'
+          dispatch(stopSubmit('login', { _error: message }))
         }
       })
   }
