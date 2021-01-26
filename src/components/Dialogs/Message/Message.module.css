@@ -1,0 +1,33 @@
+.myMessage {
+    margin: 15px 15px 15px 25px;
+    width: 170px;
+    background-color: rgb(48, 47, 58);
+    border: 2px solid white;
+    border-top-right-radius: 15px;
+    padding: 8px;
+    color: white;
+    font-size: 18px;
+    font-family: 'Courier';
+    word-wrap: break-word;
+}
+
+.message{
+    position: relative;
+    margin-left: 20px;
+    right: -210px;
+    width: 170px;
+    border: 2px solid white;
+    border-top-left-radius: 15px;
+    padding: 8px;
+    color: white;
+    font-size: 18px;
+    font-family: 'Courier';
+    word-wrap: break-word;
+}
+
+.messageTime{
+    margin-top: 5px;
+    color:  #e0b4ca;
+    font-size: 15px;
+    margin-left: 120px;
+}

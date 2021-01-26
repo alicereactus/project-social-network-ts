@@ -6,6 +6,8 @@ import Post from './Post/Post';
 
 import styles from './MyPosts.module.css';
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
+import { maxLengthCreator, required } from '../../../utils/validators/validators';
+import { Textarea } from '../../Common/FormsControls/FormControl';
 
 type MyPostsPropsType = {
   posts: Array<PostType>
@@ -54,15 +56,18 @@ const MyPosts = (props: MyPostsPropsType) => {
   )
 }
 
+const maxLengthCreator500 = maxLengthCreator(500)
+
 const AddNewPostFrom: React.FC<InjectedFormProps<AddPostPropsType>> = (props) => {
   return (
   <form className={styles.addPost} onSubmit={props.handleSubmit}>
     <div>
       <Field
         name='newPostText'
-        component='textarea'
+        component={Textarea}
         placeholder='Enter your message'
-        wrap='hard' />
+        wrap='hard'
+        validate={[required, maxLengthCreator500]} />
     </div>
     <div className={styles.addPostBtn}>
       <button>Dadać post</button>

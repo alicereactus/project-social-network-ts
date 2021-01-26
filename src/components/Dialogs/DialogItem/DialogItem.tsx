@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import {DialogType} from '../../../redux/dialogs-reducer';
 
-import styles from './../Dialogs.module.css';
+import styles from './DialogItem.module.css';
 
 const DialogItem = (props: DialogType) => {
   let path = '/paviedamliennia/' + props.id

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { MessageType } from '../../../redux/dialogs-reducer';
 
-import styles from './../Dialogs.module.css';
+import styles from './Message.module.css';
 
 const Message = (props: MessageType) => {
   return (
