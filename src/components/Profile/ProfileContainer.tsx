@@ -64,7 +64,7 @@ let mapStateToProps = (state: AppStateType) => {
 // const WithUrlDataContainerComponent = withRouter(AuthRedirectComponent)
 
 export default compose<React.ComponentType>(
-  withAuthRedirect,
+  // withAuthRedirect,
   withRouter,
   connect(mapStateToProps, { getUserProfile: getUserProfileThunkCreator, getUserStatus: getStatusThunkCreator, updateUserStatus: updateStatusThunkCreator })
 )(ProfileContainer);
