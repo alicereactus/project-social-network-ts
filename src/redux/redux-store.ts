@@ -13,6 +13,7 @@ import usersReducer, {
     ToggleIsFollowingProgressActionType,
 } from './users-reducer'
 import authReducer, { SetUserDataActionType } from "./auth-reducer";
+import appReducer, { InitializedSuccessActionType } from './app-reducer';
 
 type ReducersType = typeof reducers
 
@@ -23,6 +24,7 @@ let reducers = combineReducers({
     dialogsPage: dialogsReducer,
     usersPage: usersReducer,
     auth: authReducer,
+    app: appReducer,
     form: formReducer
 })
 
@@ -45,6 +47,7 @@ AddPostActionType
 | ToggleIsFetchingActionType
 | SetUserDataActionType
 | ToggleIsFollowingProgressActionType
+| InitializedSuccessActionType
 
 // @ts-ignore
 window.store = store

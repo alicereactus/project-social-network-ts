@@ -1,6 +1,10 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-import './App.css';
+import { Route, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+
+import { initializeThunkCreator } from './redux/app-reducer';
+
 import Navbar from './components/Navbar/Navbar';
 import News from './components/News/News';
 import Music from './components/Music/Music';
@@ -11,30 +15,63 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
 
-const App: React.FC = () => {
+import './App.css';
+import { AppStateType } from './redux/redux-store';
+import Preloader from './components/Common/Preloader/Preloader';
 
-  return (
-    <div className='app-wrapper'>
-      <HeaderContainer />
-      <Navbar />
-      <div className='app-wrapper-content'>
-      <Route path='/login'
-          render={() => <Login />} />
-        <Route path='/profile/:userId?'
-          render={() => <ProfileContainer />} />
-        <Route path='/paviedamliennia'
-          render={() => <DialogsContainer />} />
-        <Route path='/users'
-          render={() => <UsersContainer /> } />
-        <Route path='/muzyka'
-          render={() => <Music />} />
-        <Route path='/naviny'
-          render={() => <News />} />
-        <Route path='/nalady'
-          render={() => <Settings />} />
-      </div>
-    </div>
-  );
+type MapStateToPropsPropsType = {
+  initialized: boolean
 }
 
-export default App;
+type MapDispatchToPropsType = {
+  initializeApp: () => void
+}
+
+class App extends React.Component<MapStateToPropsPropsType & MapDispatchToPropsType> {
+
+  componentDidMount() {
+    debugger
+    this.props.initializeApp()
+  }
+  
+  render() {
+    debugger
+    if(!this.props.initialized) {
+      return <Preloader />
+    }
+
+    return (
+      <div className='app-wrapper'>
+        <HeaderContainer />
+        <Navbar />
+        <div className='app-wrapper-content'>
+          <Route path='/login'
+            render={() => <Login />} />
+          <Route path='/profile/:userId?'
+            render={() => <ProfileContainer />} />
+          <Route path='/paviedamliennia'
+            render={() => <DialogsContainer />} />
+          <Route path='/users'
+            render={() => <UsersContainer />} />
+          <Route path='/muzyka'
+            render={() => <Music />} />
+          <Route path='/naviny'
+            render={() => <News />} />
+          <Route path='/nalady'
+            render={() => <Settings />} />
+        </div>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state: AppStateType): MapStateToPropsPropsType => {
+  return {
+    initialized: state.app.initialized
+  }
+}
+
+export default compose<React.ComponentType>(
+  connect(mapStateToProps, { initializeApp: initializeThunkCreator }),
+  withRouter
+  )(App);
