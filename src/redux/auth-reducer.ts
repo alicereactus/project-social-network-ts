@@ -45,7 +45,7 @@ export const setAuthUserData = (userId: number | null, login: string | null, ema
 
 export const getAuthUserDataThunkCreator = (): ThunkType => {
   return (dispatch: ThunkDispatch<AppStateType, unknown, ActionsType>) => {
-    authAPI.getAuth()
+    return authAPI.getAuth()
       .then(data => {
         if (data.resultCode === 0) {
           const { id, login, email } = data.data
