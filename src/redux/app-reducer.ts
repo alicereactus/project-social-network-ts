@@ -39,7 +39,6 @@ export const initializeThunkCreator = (): ThunkType => {
         let promise = dispatch(getAuthUserDataThunkCreator())
         Promise.all([promise])
             .then(() => {
-                debugger
                 dispatch(initializedSuccess())
             })
     }

@@ -11,6 +11,7 @@ import usersReducer, {
     FollowActionType, SetUsersActionType, SetCurrentPageActionType,
     UnfollowActionType, SetTotalUsersActionType, ToggleIsFetchingActionType,
     ToggleIsFollowingProgressActionType,
+    FakeActionType,
 } from './users-reducer'
 import authReducer, { SetUserDataActionType } from "./auth-reducer";
 import appReducer, { InitializedSuccessActionType } from './app-reducer';
@@ -48,6 +49,7 @@ AddPostActionType
 | SetUserDataActionType
 | ToggleIsFollowingProgressActionType
 | InitializedSuccessActionType
+| FakeActionType
 
 // @ts-ignore
 window.store = store

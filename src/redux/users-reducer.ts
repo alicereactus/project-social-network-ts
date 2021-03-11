@@ -20,6 +20,7 @@ export type UsersPagePropsType = {
   currentPage: number
   isFetching: boolean
   followingInProgress: Array<number>
+  fake: number
 }
 
 export type FollowActionType = {
@@ -58,6 +59,11 @@ export type ToggleIsFollowingProgressActionType = {
   userId: number
 }
 
+ export type FakeActionType = {
+  type: 'FAKE'
+  fake: number
+}
+
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET-USERS'
@@ -72,11 +78,15 @@ let initialState = {
   totalUsersCount: 0,
   currentPage: 1,
   isFetching: true,
-  followingInProgress: []
+  followingInProgress: [],
+  fake: 10
 }
 
 export const usersReducer = (state: UsersPagePropsType = initialState, action: ActionsType): UsersPagePropsType => {
   switch (action.type) {
+    case 'FAKE': {
+      return {...state, fake: state.fake + 1}
+    }
     case FOLLOW:
       return {
         ...state,

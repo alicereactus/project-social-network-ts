@@ -9,6 +9,10 @@ import store from './redux/redux-store';
 
 import './index.css';
 
+// setInterval(() => {
+//   store.dispatch({ type: 'FAKE' })
+// }, 1000)
+
 let rerenderEntireTree = () => {
   ReactDOM.render(
     <BrowserRouter>

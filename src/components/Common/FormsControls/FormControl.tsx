@@ -7,7 +7,7 @@ type TextAreaPropsType = {
 }
 
 export const Textarea: React.FC<TextAreaPropsType> = ({ input, meta, ...props }) => {
-    console.log(meta)
+    // console.log(meta)
     const hasError = meta.touched && meta.error
     return (
         <div className={styles.formControl + ' ' + (hasError ? styles.error : '')}>

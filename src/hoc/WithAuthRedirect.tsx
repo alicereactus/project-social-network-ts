@@ -17,7 +17,6 @@ let mapStateToPropsForRedirect = (state: AppStateType) => ({
 })
 
 export function withAuthRedirect<WCP>(Component: React.ComponentType<WCP>) {
-    debugger
     const RedirectComponent: React.FC<MapStateToPropsType & DispatchPropsType> = (props) => {
         let { isAuth, fake, ...restProps } = props
         if (!isAuth) return <Redirect to={'/login'} />
