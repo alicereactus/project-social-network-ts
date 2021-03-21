@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import styles from './ProfileInfo.module.css';
 
 type ProfileStatusPropsType = {
@@ -22,6 +22,10 @@ const ProfileStatusWithHooks = (props: ProfileStatusPropsType) => {
     const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
         setStatus(e.currentTarget.value)
     }
+
+    useEffect(() => {
+        setStatus(props.status)
+    }, [props.status])
 
     return (
         <div className={styles.profileInfoStatus}>
