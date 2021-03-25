@@ -20,7 +20,7 @@ type AddPostPropsType = {
   newPostText: string
 }
 
-const MyPosts = (props: MyPostsPropsType) => {
+const MyPosts = React.memo((props: MyPostsPropsType) => {
 
   const postsElements = props.posts.map(p => <Post
     key={p.id}
@@ -54,7 +54,7 @@ const MyPosts = (props: MyPostsPropsType) => {
       </div>
     </div>
   )
-}
+})
 
 const maxLengthCreator500 = maxLengthCreator(500)
 
