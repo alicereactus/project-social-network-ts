@@ -3,7 +3,7 @@ import thunkMiddleware from 'redux-thunk'
 import { reducer as formReducer } from 'redux-form';
 
 import profileReducer, {
-    AddPostActionType, LikePostActionType, SetStatusActionType, SetUserProfileActionType,
+    AddPostActionType, DeletePostActionType, LikePostActionType, SetStatusActionType, SetUserProfileActionType,
     UnlikePostActionType
 } from './profile-reducer'
 import dialogsReducer, { SendMessageActionType } from './dialogs-reducer'
@@ -50,6 +50,7 @@ AddPostActionType
 | ToggleIsFollowingProgressActionType
 | InitializedSuccessActionType
 | FakeActionType
+| DeletePostActionType
 
 // @ts-ignore
 window.store = store

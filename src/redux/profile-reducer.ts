@@ -66,11 +66,17 @@ export type SetStatusActionType = {
   status: string
 }
 
+export type DeletePostActionType = {
+  type: 'DELETE-POST'
+  postID: string
+}
+
 const ADD_POST = 'ADD-POST'
 const LIKE = 'LIKE-POST'
 const UNLIKE = 'UNLIKE-POST'
 const SET_USER_PROFILE = 'SET-USER-PROFILE'
 const SET_STATUS = 'SET-STATUS'
+const DELETE_POST = 'DELETE-POST'
 
 export let initialState = {
   profile: {
@@ -146,6 +152,10 @@ const profileReducer = (state: ProfilePagePropsType = initialState, action: Acti
       return {
         ...state, status: action.status
       }
+    case DELETE_POST:
+      return {
+        ...state, posts: state.posts.filter(post => post.id !== action.postID)
+      }
     default:
       return state
   }
@@ -183,6 +193,13 @@ export const setStatus = (status: string): SetStatusActionType => {
   return {
     type: SET_STATUS,
     status
+  }
+}
+
+export const deletePost = (postID: string): DeletePostActionType => {
+  return {
+    type: DELETE_POST,
+    postID
   }
 }
 
